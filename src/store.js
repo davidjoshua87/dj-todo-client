@@ -6,6 +6,8 @@ import router from './router'
 
 Vue.use(Vuex);
 
+const baseURL = 'https://boxing-celsius-81252.herokuapp.com'
+
 export default new Vuex.Store({
   state: {
     isLogin: false,
@@ -40,7 +42,7 @@ export default new Vuex.Store({
     loginUser ({
       commit
     }, userData) {
-      axios.post('http://localhost:3002/index/login', {
+      axios.post(`${baseURL}/index/login`, {
           username: userData.username,
           email: userData.email,
           password: userData.password
@@ -71,7 +73,7 @@ export default new Vuex.Store({
     registerNewUser ({
       dispatch
     }, userData) {
-      axios.post('http://localhost:3002/index/register', {
+      axios.post(`${baseURL}/index/register`, {
           username: userData.username,
           email: userData.email,
           password: userData.password
@@ -95,7 +97,7 @@ export default new Vuex.Store({
     loginAfterRegister ({
       commit
     }, userData) {
-      axios.post('http://localhost:3002/index/login', {
+      axios.post(`${baseURL}/index/login`, {
           username: userData.username,
           password: userData.password
         })
@@ -121,7 +123,7 @@ export default new Vuex.Store({
       let username = profile.username
       let email = profile.email
       let fbId = profile.id
-      axios.post('http://localhost:3002/index/loginfb', {
+      axios.post(`${baseURL}/index/loginfb`, {
           username: username,
           email: email,
           fbId: fbId
@@ -150,7 +152,7 @@ export default new Vuex.Store({
     getAllTasks ({
       commit
     }, token) {
-      axios.get('http://localhost:3002/todo/show', {
+      axios.get(`${baseURL}/todo/show`, {
           headers: {
             token: token
           }
@@ -169,7 +171,7 @@ export default new Vuex.Store({
     getCurrentWeather ({
       commit
     }) {
-      axios.get('http://localhost:3002/weather/show-weather')
+      axios.get(`${baseURL}/weather/show-weather`)
         .then(function (weatherData) {
           commit('setWeather', weatherData)
         })
@@ -184,7 +186,7 @@ export default new Vuex.Store({
     getSearchWeather ({
       commit
     }, inputData) {
-      axios.post('http://localhost:3002/weather/search', inputData)
+      axios.post(`${baseURL}/weather/search`, inputData)
         .then(function (resultData) {
           commit('setResult', resultData)
         })
@@ -199,7 +201,7 @@ export default new Vuex.Store({
     addNewtask ({
       dispatch
     }, taskDetail) {
-      axios.post('http://localhost:3002/todo/add', {
+      axios.post(`${baseURL}/todo/add`, {
           todo: taskDetail.task
         }, {
           headers: {
@@ -221,7 +223,7 @@ export default new Vuex.Store({
     finishTask ({
       dispatch
     }, taskDetail) {
-      axios.put(`http://localhost:3002/todo/finish/${taskDetail.taskId}`, {}, {
+      axios.put(`${baseURL}/todo/finish/${taskDetail.taskId}`, {}, {
           headers: {
             token: taskDetail.token
           }
@@ -241,7 +243,7 @@ export default new Vuex.Store({
     deleteTask ({
       dispatch
     }, taskDetail) {
-      axios.delete(`http://localhost:3002/todo/delete/${taskDetail.taskId}`, {
+      axios.delete(`${baseURL}/todo/delete/${taskDetail.taskId}`, {
           headers: {
             token: taskDetail.token
           }
@@ -261,7 +263,7 @@ export default new Vuex.Store({
     updateTask({
       dispatch
     }, taskDetail) {
-      axios.put(`http://localhost:3002/todo/update/${taskDetail.taskId}`, {
+      axios.put(`${baseURL}/todo/update/${taskDetail.taskId}`, {
           todo: taskDetail.task
         }, {
           headers: {
@@ -283,7 +285,7 @@ export default new Vuex.Store({
     getTaskByStatus({
       commit
     }, taskDetail) {
-      axios.get(`http://localhost:3002/todo/show/${taskDetail.status}`, {
+      axios.get(`${baseURL}/todo/show/${taskDetail.status}`, {
           headers: {
             token: taskDetail.token
           }
@@ -302,7 +304,7 @@ export default new Vuex.Store({
     }, userData) {
       //Change username and email only
       if (userData.newPass == '' && userData.confirm == '') {
-        axios.put('http://localhost:3002/user/update-user', {
+        axios.put(`${baseURL}/user/update-user`, {
             username: userData.username,
             email: userData.email,
             new_password: userData.newPass,
@@ -341,7 +343,7 @@ export default new Vuex.Store({
             icon: 'warning'
           })
         } else {
-          axios.put('http://localhost:3002/user/update-user', {
+          axios.put(`${baseURL}/user/update-user`, {
             username: username,
             email: email,
             new_password: new_password,
