@@ -9,30 +9,30 @@ import Todo from './views/Todo.vue'
 Vue.use(Router)
 
 export default new Router({
-  routes: [{
-    path: '/home',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: Register
-  },
-  {
-    path: '/profile',
-    name: 'profile',
-    component: Profile
-  },
-  {
-    path: '/todo',
-    name: 'todo',
-    component: Todo
-  }
-  ]
+    routes: [{
+            path: '/home',
+            name: 'home',
+            component: Home
+        },
+        {
+            path: '/',
+            name: 'Login',
+            component: Login
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: Register
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: Profile
+        },
+        {
+            path: '/todo',
+            name: 'todo',
+            component: Todo
+        }
+    ]
 })
