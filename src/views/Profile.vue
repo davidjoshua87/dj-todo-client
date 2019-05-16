@@ -119,20 +119,22 @@
         name: 'profile',
         data() {
             return {
-                username: localStorage.getItem('username'),
-                email: localStorage.getItem('email'),
-                password: '',
-                old_password: '',
-                new_password: '',
                 confirm: '',
+                dataTarget: '',
+                email: localStorage.getItem('email'),
                 new_confirm: '',
-                dataTarget: ''
+                new_password: '',
+                old_password: '',
+                password: '',
+                username: localStorage.getItem('username'),
             }
         },
         created() {
             this.$store.dispatch('getAllTasks', localStorage.getItem('token'))
+            
             let fbToken = localStorage.getItem('fb')
             let token = localStorage.getItem('token')
+
             if (token !== null) {
                 if (fbToken === '1') {
                     this.$store.commit('userLoginFB')

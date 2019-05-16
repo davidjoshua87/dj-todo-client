@@ -45,10 +45,10 @@
         name: 'register',
         data() {
             return {
-                username: '',
+                confirm: '',
                 email: '',
                 password: '',
-                confirm: ''
+                username: '',
             }
         },
         methods: {
@@ -58,6 +58,7 @@
                     email: this.email,
                     password: this.password
                 }
+                
                 if (this.username === '') {
                     swal('Username must be filled!', {
                         icon: 'warning'

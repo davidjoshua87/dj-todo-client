@@ -265,12 +265,15 @@ export default new Vuex.Store({
         loginFB({
             commit
         }, profile) {
-            let username = profile.username
-            let email = profile.email
-            let fbId = profile.id
+            let username = profile.name;
+            let email    = profile.email;
+            let password = profile.id;
+            let fbId     = profile.id;
+
             axios.post(`${baseURL}/index/loginfb`, {
                     username: username,
                     email: email,
+                    password: password,
                     fbId: fbId
                 })
                 .then(function (response) {

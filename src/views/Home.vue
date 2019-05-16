@@ -6,7 +6,7 @@
                 <div class="row">
                     <h1 class="col text-center title">
                         Welcome_
-                        <span>{{ username }}</span>
+                        <span>{{ nickname }}</span>
                     </h1>
                 </div>
                 <hr>
@@ -95,10 +95,11 @@
         name: 'home',
         data() {
             return {
-                username: localStorage.getItem('username'),
-                notDone: 0,
                 finished: 0,
+                nickname: '',
+                notDone: 0,
                 search: '',
+                username: localStorage.getItem('username'),
             }
         },
         computed: {
@@ -111,24 +112,27 @@
             ]),
         },
         beforeCreate() {
-            this.$store.dispatch('getCurrentWeather')
+            this.$store.dispatch('getCurrentWeather');
         },
         created() {
-            this.$store.dispatch('getAllTasks', localStorage.getItem('token'))
-            this.getTaskStatuses()
-            let fbToken = localStorage.getItem('fb')
-            let token = localStorage.getItem('token')
+            this.getNickname ();
+            this.$store.dispatch('getAllTasks', localStorage.getItem('token'));
+            this.getTaskStatuses();
+            
+            let fbToken = localStorage.getItem('fb');
+            let token = localStorage.getItem('token');
+
             if (token !== null) {
                 if (fbToken === '1') {
-                    this.$store.commit('userLoginFB')
+                    this.$store.commit('userLoginFB');
                 }
-                this.$store.commit('userLoggedIn')
+                this.$store.commit('userLoggedIn');
             } else {
-                this.$router.push('/')
+                this.$router.push('/');
             }
         },
         methods: {
-            checkWeather: function () {
+            checkWeather() {
                 let inputData = {
                     search: this.search
                 }
@@ -139,6 +143,15 @@
                 } else {
                     this.$store.dispatch('getSearchWeather', inputData);
                     this.search = '';
+                }
+            },
+
+            getNickname () {
+                let name = this.username.split(' ');
+                if(name.length > 1){
+                    this.nickname = name[0];
+                } else {
+                    this.nickname = this.username;
                 }
             },
             

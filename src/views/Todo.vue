@@ -127,11 +127,11 @@
     export default {
         data() {
             return {
-                taskName: '',
-                newTask: '',
-                taskId: '',
                 done: [],
-                notDone: []
+                newTask: '',
+                notDone: [],
+                taskId: '',
+                taskName: '',
             }
         },
         computed: {

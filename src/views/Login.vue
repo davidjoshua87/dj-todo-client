@@ -40,7 +40,7 @@
 
 <script>
     import swal from 'sweetalert'
-    const FB = window.FB;
+    // const FB = window.FB;
 
     window.fbAsyncInit = function () {
         FB.init({
@@ -68,9 +68,9 @@
         name: 'login',
         data() {
             return {
-                username: '',
                 email: '',
-                password: ''
+                password: '',
+                username: '',
             }
         },
         created() {
@@ -105,6 +105,7 @@
                         icon: 'warning'
                     })
                 }
+                
                 let userData = {
                     username: username,
                     password: password
